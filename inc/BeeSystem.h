@@ -6,7 +6,7 @@ class BeeSystem :
 	public BasicSystem
 {
 public:
-	BeeSystem(const BeeGraph& G, MAPFSolver& solver);
+	BeeSystem(BeeGraph& G, MAPFSolver& solver);
 	~BeeSystem();
 	bool load_task_assignments(string fname);
 	int get_num_of_missed_tasks() const; // the robots reach these tasks after their deadlines
@@ -20,7 +20,7 @@ public:
 	double VRP_time = 0; // time for solving the VRP problem
 	void simulate();
 private:
-	const BeeGraph& G;
+	BeeGraph& G;
 	vector<list<pair<int, int> > > task_sequences; // one task sequence per agent
 	void initialize();
 	void initialize_start_locations();

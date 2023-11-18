@@ -36,7 +36,7 @@ public:
             int time_limit) = 0;
 
 
-	MAPFSolver(const BasicGraph& G, SingleAgentSolver& path_planner);
+	MAPFSolver(BasicGraph& G, SingleAgentSolver& path_planner);
 	~MAPFSolver();
 
 	// Save results
@@ -47,7 +47,7 @@ public:
 
 	virtual string get_name() const = 0;
 
-    const BasicGraph& G;
+    BasicGraph& G;
     vector<State> starts;
     vector< vector<pair<int, int> > > goal_locations;
     int num_of_agents;

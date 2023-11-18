@@ -9,13 +9,13 @@ class SortingSystem :
 public:
     int c; // param for induct assignment
 
-	SortingSystem(const SortingGrid& G, MAPFSolver& solver);
+	SortingSystem(SortingGrid& G, MAPFSolver& solver);
     ~SortingSystem();
 
     void simulate(int simulation_time);
 
 private:
-	const SortingGrid& G;
+	SortingGrid& G;
 
     // record usage of induct stations
     boost::unordered_map<int, int> drives_in_induct_stations; // induct location + #drives that intends to go to this induct station

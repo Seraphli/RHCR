@@ -726,7 +726,7 @@ void ECBS::resolve_conflict(const Conflict& conflict, ECBSNode* n1, ECBSNode* n2
 
 
 
-ECBS::ECBS(const BasicGraph& G, SingleAgentSolver& path_planner):
+ECBS::ECBS(BasicGraph& G, SingleAgentSolver& path_planner):
         MAPFSolver(G, path_planner), disjoint_splitting(false) {}
 
 

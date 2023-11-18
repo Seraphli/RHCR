@@ -84,7 +84,7 @@ public:
 class SIPP: public SingleAgentSolver
 {
 public:
-    Path run(const BasicGraph& G, const State& start,
+    Path run(BasicGraph& G, const State& start,
              const vector<pair<int, int> >& goal_location,
              ReservationTable& RT);
 	string getName() const { return "SIPP"; }
@@ -97,10 +97,10 @@ private:
     unordered_set< SIPPNode*, SIPPNode::Hasher, SIPPNode::EqNode> allNodes_table;
 	inline void releaseClosedListNodes();
 
-    void generate_node(const Interval& interval, SIPPNode* curr, const BasicGraph& G,
+    void generate_node(const Interval& interval, SIPPNode* curr, BasicGraph& G,
                        int location, int min_timestep, int orientation, double h_val);
     // Updates the path
-    Path updatePath(const BasicGraph& G, const SIPPNode* goal);
+    Path updatePath(BasicGraph& G, const SIPPNode* goal);
 
 };
 

@@ -2,7 +2,7 @@
 #include <boost/tokenizer.hpp>
 
 
-BeeSystem::BeeSystem(const BeeGraph& G, MAPFSolver& solver) : BasicSystem(G, solver), G(G) {}
+BeeSystem::BeeSystem(BeeGraph& G, MAPFSolver& solver) : BasicSystem(G, solver), G(G) {}
 
 
 BeeSystem::~BeeSystem()

@@ -42,7 +42,7 @@ public:
             int time_limit);
 
 
-    PBS(const BasicGraph& G, SingleAgentSolver& path_planner);
+    PBS(BasicGraph& G, SingleAgentSolver& path_planner);
 	~PBS();
 
     void update_paths(PBSNode* curr);

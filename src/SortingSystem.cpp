@@ -7,7 +7,7 @@
 #include "LRAStar.h"
 
 
-SortingSystem::SortingSystem(const SortingGrid& G, MAPFSolver& solver): BasicSystem(G, solver), c(8), G(G) {}
+SortingSystem::SortingSystem(SortingGrid& G, MAPFSolver& solver): BasicSystem(G, solver), c(8), G(G) {}
 
 
 SortingSystem::~SortingSystem() {}

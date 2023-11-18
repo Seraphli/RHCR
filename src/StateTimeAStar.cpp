@@ -41,7 +41,7 @@ list<pair<int, int> > StateTimeAStar::updateTrajectory(const StateTimeAStarNode*
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // return true if a path found (and updates vector<int> path) or false if no path exists
 // after max_timestep, switch from time-space A* search to normal A* search
-Path StateTimeAStar::run(const BasicGraph& G, const State& start, 
+Path StateTimeAStar::run(BasicGraph& G, const State& start, 
 	const vector<pair<int, int> >& goal_location, ReservationTable& rt)
 {
     num_expanded = 0;
@@ -234,7 +234,7 @@ Path StateTimeAStar::run(const BasicGraph& G, const State& start,
 }
 
 
-void StateTimeAStar::findTrajectory(const BasicGraph& G,
+void StateTimeAStar::findTrajectory(BasicGraph& G,
                      const State& start,
                      const vector<pair<int, int> >& goal_locations,
                      const unordered_map<int, double>& travel_times,

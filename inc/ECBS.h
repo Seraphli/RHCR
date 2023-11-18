@@ -29,7 +29,7 @@ public:
              int time_limit);
 
 
-    ECBS(const BasicGraph& G, SingleAgentSolver& path_planner);
+    ECBS(BasicGraph& G, SingleAgentSolver& path_planner);
     ~ECBS();
 
     void update_paths(ECBSNode* curr);

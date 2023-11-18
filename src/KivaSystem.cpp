@@ -4,7 +4,7 @@
 #include "LRAStar.h"
 #include "PBS.h"
 
-KivaSystem::KivaSystem(const KivaGrid& G, MAPFSolver& solver): BasicSystem(G, solver), G(G) {}
+KivaSystem::KivaSystem(KivaGrid& G, MAPFSolver& solver): BasicSystem(G, solver), G(G) {}
 
 
 KivaSystem::~KivaSystem()

@@ -6,14 +6,14 @@ class KivaSystem :
 	public BasicSystem
 {
 public:
-	KivaSystem(const KivaGrid& G, MAPFSolver& solver);
+	KivaSystem(KivaGrid& G, MAPFSolver& solver);
 	~KivaSystem();
 
 	void simulate(int simulation_time);
 
 
 private:
-	const KivaGrid& G;
+	KivaGrid& G;
 	unordered_set<int> held_endpoints;
 
 	void initialize();

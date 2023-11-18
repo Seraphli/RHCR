@@ -812,7 +812,7 @@ void PBS::resolve_conflict(const Conflict& conflict, PBSNode* n1, PBSNode* n2)
 
 
 
-PBS::PBS(const BasicGraph& G, SingleAgentSolver& path_planner) : MAPFSolver(G, path_planner),
+PBS::PBS(BasicGraph& G, SingleAgentSolver& path_planner) : MAPFSolver(G, path_planner),
         lazyPriority(false), best_node(nullptr) {}
 
 

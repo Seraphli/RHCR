@@ -1,7 +1,7 @@
 #include "SIPP.h"
 
 
-Path SIPP::updatePath(const BasicGraph& G, const SIPPNode* goal)
+Path SIPP::updatePath(BasicGraph& G, const SIPPNode* goal)
 {
     Path path(goal->state.timestep + 1);
     path_cost = goal->getFVal();
@@ -54,7 +54,7 @@ Path SIPP::updatePath(const BasicGraph& G, const SIPPNode* goal)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // return true if a path found (and updates vector<int> path) or false if no path exists
 // after max_timestep, switch from time-space A* search to normal A* search
-Path SIPP::run(const BasicGraph& G, const State& start,
+Path SIPP::run(BasicGraph& G, const State& start,
                const vector<pair<int, int> >& goal_location,
                ReservationTable& rt)
 {
@@ -342,7 +342,7 @@ Path SIPP::run(const BasicGraph& G, const State& start,
 }*/
 
 
-void SIPP::generate_node(const Interval& interval, SIPPNode* curr, const BasicGraph& G,
+void SIPP::generate_node(const Interval& interval, SIPPNode* curr, BasicGraph& G,
         int location, int min_timestep, int orientation, double h_val)
 {
     int timestep  = max(std::get<0>(interval), min_timestep);

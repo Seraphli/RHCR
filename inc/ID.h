@@ -7,7 +7,7 @@ public:
 	MAPFSolver& solver;
 
 	// The first two parameters are useless, since they are already defined in mapf_solver.
-	ID(const BasicGraph& G, SingleAgentSolver& path_planner, MAPFSolver& mapf_solver):
+	ID(BasicGraph& G, SingleAgentSolver& path_planner, MAPFSolver& mapf_solver):
 		MAPFSolver(G, path_planner), solver(mapf_solver) {}
 
 	bool run(const vector<State>& starts,

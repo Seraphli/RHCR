@@ -20,7 +20,7 @@ public:
 	void save_search_tree(const std::string &fileName) const {}
 	void save_constraints_in_goal_node(const std::string &fileName) const {}
 
-    LRAStar(const BasicGraph& G, SingleAgentSolver& path_planner);
+    LRAStar(BasicGraph& G, SingleAgentSolver& path_planner);
 
 	bool run(const vector<State>& starts,
 		const vector< vector<pair<int, int> > >& goal_locations,

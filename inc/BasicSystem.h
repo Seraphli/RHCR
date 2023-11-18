@@ -32,7 +32,7 @@ public:
     bool consider_rotation;
     int k_robust;
 
-    BasicSystem(const BasicGraph& G, MAPFSolver& solver);
+    BasicSystem(BasicGraph& G, MAPFSolver& solver);
     ~BasicSystem();
 
 	// TODO
@@ -86,6 +86,6 @@ protected:
     bool LRA_called = false;
 
 private:
-	const BasicGraph& G;
+	BasicGraph& G;
 };
 

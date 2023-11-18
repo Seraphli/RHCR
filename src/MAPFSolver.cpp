@@ -4,7 +4,7 @@
 #include "PathTable.h"
 
 
-MAPFSolver::MAPFSolver(const BasicGraph& G, SingleAgentSolver& path_planner):
+MAPFSolver::MAPFSolver(BasicGraph& G, SingleAgentSolver& path_planner):
         solution_found(false), solution_cost(-2),
         avg_path_length(-1), G(G), path_planner(path_planner), initial_rt(G), rt(G) {}
 

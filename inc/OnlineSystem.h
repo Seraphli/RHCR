@@ -5,14 +5,14 @@
 class OnlineSystem: public BasicSystem
 {
 public:
-	OnlineSystem(const OnlineGrid& G, MAPFSolver& solver);
+	OnlineSystem(OnlineGrid& G, MAPFSolver& solver);
 	~OnlineSystem();
 
 	void simulate(int simulation_time);
 
 
 private:
-	const OnlineGrid& G;
+	OnlineGrid& G;
 	double lambda; // param for Possion distribution
 	list<Path> finished_paths; // store the paths of agents that have reached their goal locations
 	void move(); // overwrite

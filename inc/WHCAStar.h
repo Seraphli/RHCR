@@ -27,7 +27,7 @@ public:
 	void save_constraints_in_goal_node(const std::string &fileName) const {}
 	void clear();
 
-    WHCAStar(const BasicGraph& G, SingleAgentSolver& path_planner);
+    WHCAStar(BasicGraph& G, SingleAgentSolver& path_planner);
     ~WHCAStar() {}
 
 
