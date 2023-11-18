@@ -49,10 +49,10 @@ bool MAPFSystem::load_scen(string scen_filename) {
       initial_locations[k] = s;
       int g = G.get_cols() * y_g + x_g;
       task_sequences[k] = g;
+      k += 1;
+      if (k == num_of_drives)
+        break;
     }
-    k += 1;
-    if (k == num_of_drives)
-      break;
   }
   return true;
 }
@@ -121,44 +121,39 @@ void MAPFSystem::initialize() {
   }
 }
 
+void MAPFSystem::save_results() {
+  std::cout << "*** Saving " << seed << " ***" << std::endl;
+  clock_t t = std::clock();
+  std::ofstream output;
 
-void MAPFSystem::save_results()
-{
-	std::cout << "*** Saving " << seed << " ***" << std::endl;
-	clock_t t = std::clock();
-	std::ofstream output;
+  // settings
+  output.open(outfile + "/config.txt", std::ios::out);
+  output << "map: " << G.map_name << std::endl
+         << "#drives: " << num_of_drives << std::endl
+         << "seed: " << seed << std::endl
+         << "solver: " << solver.get_name() << std::endl
+         << "time_limit: " << time_limit << std::endl
+         << "simulation_window: " << simulation_window << std::endl
+         << "planning_window: " << planning_window << std::endl
+         << "simulation_time: " << simulation_time << std::endl
+         << "robust: " << k_robust << std::endl
+         << "rotate: " << consider_rotation << std::endl
+         << "use_dummy_paths: " << useDummyPaths << std::endl
+         << "hold_endpoints: " << hold_endpoints << std::endl;
 
-	// settings
-	output.open(outfile + "/config.txt", std::ios::out);
-	output << "map: " << G.map_name << std::endl
-		<< "#drives: " << num_of_drives << std::endl
-		<< "seed: " << seed << std::endl
-		<< "solver: " << solver.get_name() << std::endl
-		<< "time_limit: " << time_limit << std::endl
-		<< "simulation_window: " << simulation_window << std::endl
-		<< "planning_window: " << planning_window << std::endl
-		<< "simulation_time: " << simulation_time << std::endl
-		<< "robust: " << k_robust << std::endl
-		<< "rotate: " << consider_rotation << std::endl
-		<< "use_dummy_paths: " << useDummyPaths << std::endl
-		<< "hold_endpoints: " << hold_endpoints << std::endl;
+  output.close();
 
-	output.close();
-
-
-	// paths
-	output.open(outfile + "/paths.txt", std::ios::out);
-	output << paths.size() << std::endl;
-	for (const auto& path : paths)
-	{
-		for (auto p : path)
-		{
-			if (p.timestep <= timestep)
-				output << p << ";";
-		}
-		output << std::endl;
-	}
-	output.close();
-	double runtime = (std::clock() - t) / CLOCKS_PER_SEC;
-	std::cout << "Done! (" << runtime << " s)" << std::endl;
+  // paths
+  output.open(outfile + "/paths.txt", std::ios::out);
+  output << paths.size() << std::endl;
+  for (const auto &path : paths) {
+    for (auto p : path) {
+      if (p.timestep <= timestep)
+        output << p << ";";
+    }
+    output << std::endl;
+  }
+  output.close();
+  double runtime = (std::clock() - t) / CLOCKS_PER_SEC;
+  std::cout << "Done! (" << runtime << " s)" << std::endl;
 }
