@@ -6,6 +6,7 @@
 
 class BasicGraph {
 public:
+  bool std_out;
   vector<std::string> types;
   unordered_map<int, vector<double>> heuristics;
   virtual ~BasicGraph() = default;

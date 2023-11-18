@@ -27,6 +27,7 @@ public:
     int simulation_window;
     int planning_window;
     int simulation_time;
+    bool std_out;
 
     // params for drive model
     bool consider_rotation;

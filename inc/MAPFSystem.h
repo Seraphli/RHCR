@@ -18,5 +18,4 @@ private:
   void initialize();
   void update_goal_locations();
   void save_results();
-  list<tuple<int, int, int>> move();
 };

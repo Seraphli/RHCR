@@ -1,4 +1,4 @@
-#include "BeeSystem.h"
+﻿#include "BeeSystem.h"
 #include "ID.h"
 #include "KivaSystem.h"
 #include "MAPFSystem.h"
@@ -12,6 +12,7 @@ void set_parameters(BasicSystem &system,
   system.outfile = vm["output"].as<std::string>();
   system.screen = vm["screen"].as<int>();
   system.log = vm["log"].as<bool>();
+  system.std_out = vm["std_out"].as<bool>();
   system.num_of_drives = vm["agentNum"].as<int>();
   system.time_limit = vm["cutoffTime"].as<int>();
   system.simulation_window = vm["simulation_window"].as<int>();
@@ -125,7 +126,9 @@ int main(int argc, char **argv) {
           "suboptimal_bound", po::value<double>()->default_value(1),
           "Suboptimal bound for ECBS")(
           "log", po::value<bool>()->default_value(false),
-          "save the search trees (and the priority trees)");
+          "save the search trees (and the priority trees)")(
+          "std_out", po::value<bool>()->default_value(false),
+          "enable stdout output");
   clock_t start_time = clock();
   po::variables_map vm;
   po::store(po::parse_command_line(argc, argv, desc), vm);
@@ -220,12 +223,13 @@ int main(int argc, char **argv) {
     double runtime = (double)(clock() - start_time) / CLOCKS_PER_SEC;
     cout << "Overall runtime:			" << runtime << " seconds."
          << endl;
-    // cout << "	Reading from file:		" << G.loading_time + system.loading_time
+    // cout << "	Reading from file:		" << G.loading_time +
+    // system.loading_time
     // << " seconds." << endl;
-    // cout << "	Preprocessing:			" << G.preprocessing_time << " seconds." <<
-    // endl;
-    // cout << "	Writing to file:		" << system.saving_time << " seconds." <<
-    // endl;
+    // cout << "	Preprocessing:			" << G.preprocessing_time
+    // << " seconds."
+    // << endl; cout << "	Writing to file:		" <<
+    // system.saving_time << " seconds." << endl;
     cout << "Makespan:		" << system.get_makespan() << " timesteps."
          << endl;
     cout << "Flowtime:		" << system.get_flowtime() << " timesteps."
@@ -262,6 +266,7 @@ int main(int argc, char **argv) {
       exit(-1);
     }
     MAPFGraph G;
+    G.std_out = vm["log"].as<bool>();
     if (!G.load_map(vm["map"].as<std::string>()))
       return -1;
     MAPFSolver *solver = set_solver(G, vm);
