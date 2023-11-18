@@ -1,4 +1,4 @@
-﻿#include "BeeSystem.h"
+#include "BeeSystem.h"
 #include "ID.h"
 #include "KivaSystem.h"
 #include "MAPFSystem.h"
@@ -257,6 +257,10 @@ int main(int argc, char **argv) {
     output.close();
     return 0;
   } else if (vm["scenario"].as<string>() == "MAPF") {
+    if (vm["simulation_window"].as<int>() != 1) {
+      std::cerr << "Simulation window can only be 1" << endl;
+      exit(-1);
+    }
     MAPFGraph G;
     if (!G.load_map(vm["map"].as<std::string>()))
       return -1;
